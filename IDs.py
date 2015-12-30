@@ -86,6 +86,18 @@ class MessageList():
 				'so_temp_data':{ #umbillical connector temp data response
 					'id':'22',
 					'data':'',
+				},
+				'hover_height_req':{ #umbillical connector temp data response
+					'id':'23',
+					'data':'',
+				},
+				'hover_height_data':{ #umbillical connector temp data response
+					'id':'24',
+					'data':'',
+				},
+				'get_hover_height':{ #umbillical connector temp data response
+					'id':'25',
+					'data':'',
 				}
 			}
 
