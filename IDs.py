@@ -63,40 +63,76 @@ class MessageList():
 					'id':'16',
 					'data':'',
 				},
-				'batt_temp_req':{ #umbillical connector temp data response
+				'batt_temp_req':{ #battery temp request
 					'id':'17',
 					'data':'',
 				},
-				'batt_temp_data':{ #umbillical connector temp data response
+				'batt_temp_data':{ #battery temp data response
 					'id':'18',
 					'data':'',
 				},
-				'batt_power_req':{ #umbillical connector temp data response
+				'batt_power_req':{ #battery power level request
 					'id':'19',
 					'data':'',
 				},
-				'batt_power_data':{ #umbillical connector temp data response
+				'batt_power_data':{ #battery power data level response
 					'id':'20',
 					'data':'',
 				},
-				'so_temp_req':{ #umbillical connector temp data response
+				'so_temp_req':{ #standard outlet temperature request
 					'id':'21',
 					'data':'',
 				},
-				'so_temp_data':{ #umbillical connector temp data response
+				'so_temp_data':{ #standard outlet temperature data response
 					'id':'22',
 					'data':'',
 				},
-				'hover_height_req':{ #umbillical connector temp data response
+				'hover_height_req':{ #hover height request message
 					'id':'23',
 					'data':'',
 				},
-				'hover_height_data':{ #umbillical connector temp data response
+				'hover_height_data':{ #hover height data response
 					'id':'24',
 					'data':'',
 				},
-				'get_hover_height':{ #umbillical connector temp data response
+				'get_hover_height':{ #hover height request from ground station
 					'id':'25',
+					'data':'',
+				},
+				'pod_temp_req':{ #pod cabin internal temperature request
+					'id':'26',
+					'data':'',
+				},
+				'pod_temp_data':{ #pod cabin internal temperature data
+					'id':'27',
+					'data':'',
+				},
+				'pod_attitude_req':{ #pod attitude request
+					'id':'28',
+					'data':'',
+				},
+				'pod_attitude_data':{ #pod attitude data
+					'id':'29',
+					'data':'',
+				},
+				'pod_pressure_req':{ #pod cabin internal pressure req
+					'id':'30',
+					'data':'',
+				},
+				'pod_pressure_data':{ #pod cabin internal pressure data
+					'id':'31',
+					'data':'',
+				},
+				'pod_position_req':{ #pod position request
+					'id':'32',
+					'data':'',
+				},
+				'pod_position_data':{ #pod positon data
+					'id':'33',
+					'data':'',
+				},
+				'get_pod_status':{ #pod positon data
+					'id':'34',
 					'data':'',
 				}
 			}

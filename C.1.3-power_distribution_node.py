@@ -25,7 +25,7 @@ def main():
 		canvas.send(sender, ml.messages['batt_power_req']['id'], '')
 		canvas.send(sender, ml.messages['so_temp_req']['id'], '')
 
-		msg_id, data = canvas.recv_noblock(receiver)
+		msg_id, data = canvas.recv(receiver)
 
 		if (msg_id == ml.messages['uc_temp_data']['id']):
 			canvas.print_out("Umbilical temp: %s" % (data))
