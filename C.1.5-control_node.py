@@ -1,23 +1,24 @@
 import time
 import canvas
 import math
+from random import randint
 from IDs import MessageList as ml
 
 sender = 0
 receiver = 0
 
 id_filter = [# receive: stop, get engine status, go # highest level commands
-		ml.messages['stop']['id'],
-		ml.messages['start']['id'],
-		ml.messages['get_engine_status']['id'],
-		ml.messages['get_hover_height']['id'],
-		ml.messages['get_pod_status']['id'],
-		ml.messages['hover_height_data']['id'], 
-		ml.messages['pod_temp_data']['id'],
-		ml.messages['pod_attitude_data']['id'],
-		ml.messages['pod_position_data']['id'],
-		ml.messages['pod_pressure_data']['id'],
-		ml.messages['move']['id']
+		'stop',
+		'start',
+		'get_engine_status',
+		'get_hover_height',
+		'get_pod_status',
+		'hover_height_data', 
+		'pod_temp_data',
+		'pod_attitude_data',
+		'pod_position_data',
+		'pod_pressure_data',
+		'move'
 		] 
 
 def move_pod(data):
@@ -44,6 +45,9 @@ def stop_pod():
 	canvas.print_out("get hover engine l status")
 	canvas.send(sender, ml.messages['get_engine_status_l']['id'], "") # get engine status L	
 
+def get_hover_height():
+	return "%d.%d" % (randint(0,6),randint(0,99))
+
 def get_pod_status():
 	temp = 0
 	pressure = 0
@@ -52,31 +56,27 @@ def get_pod_status():
 
 	i = 4
 
-	#send request messages for all the data we need
-	canvas.send(sender, ml.messages['pod_temp_req']['id'], "")
-	canvas.send(sender, ml.messages['pod_attitude_req']['id'], "")
-	canvas.send(sender, ml.messages['pod_position_req']['id'], "")
-	canvas.send(sender, ml.messages['pod_pressure_req']['id'], "")
+	canvas.send_batch(sender, ['pod_temp_req', 'pod_pressure_req', 'pod_position_req', 'pod_attitude_req'])
 
 	#wait untill all 4 responses have arrived. order of responses arriving does not matter with this method
 	#we also make sure we do not count the same data arriving twice.
 	while i > 0:
-		msg_id, data = canvas.recv(receiver)
+		msg_name, data = canvas.recv(receiver)
 
 		#if the "temp" variable is not 0 (its default value), that means we have received the temperature data already.
-		if(msg_id == ml.messages['pod_temp_data']['id'] and temp == 0):
+		if(msg_name == 'pod_temp_data' and temp == 0):
 			temp = data
 			i -= 1
 
-		elif(msg_id == ml.messages['pod_pressure_data']['id'] and pressure == 0):
+		elif(msg_name == 'pod_pressure_data' and pressure == 0):
 			pressure = data
 			i -= 1
 
-		elif(msg_id == ml.messages['pod_attitude_data']['id'] and attitude == ""):
+		elif(msg_name == 'pod_attitude_data' and attitude == ""):
 			attitude = data
 			i -= 1
 
-		elif(msg_id == ml.messages['pod_position_data']['id'] and position == 0):
+		elif(msg_name == 'pod_position_data' and position == 0):
 			position = data
 			i -= 1
 
@@ -94,41 +94,42 @@ def main():
 	canvas.add_id(receiver, id_filter)
 	canvas.print_out("Control node started")
 	while 1:
-		canvas.send(sender, ml.messages['get_pod_status']['id'], "")
-		msg_id, data = canvas.recv(receiver)
+		canvas.send_cmd(sender, 'get_pod_status')
+		msg_name, data = canvas.recv(receiver)
 		# get status of all engines
-		if (msg_id == ml.messages['get_engine_status']['id']):
+		if (msg_name == 'get_engine_status'):
 			canvas.print_out("COMMANDS:")
 			canvas.print_out("get all engine statuses")
 			
 			# get the status for each individual engine node
-			canvas.send(sender, ml.messages['get_engine_status_l']['id'], "")
+			canvas.send_cmd(sender, 'get_engine_status_l')
 			
-		elif (msg_id == ml.messages['move']['id']):
+		elif (msg_name == 'move'):
 			canvas.print_out("COMMANDS:")
 			canvas.print_out("move %s" % data)
 
 			move_pod(data)
 			
-		elif (msg_id == ml.messages['start']['id']):
+		elif (msg_name == 'start'):
 			canvas.print_out("COMMANDS:")
 			canvas.print_out("start pod")
 			
 			start_pod()
 			
-		elif (msg_id == ml.messages['stop']['id']):
+		elif (msg_name == 'stop'):
 			canvas.print_out("COMMANDS:")
 			canvas.print_out("stop")
 			
 			stop_pod()
-
-		elif (msg_id == ml.messages['get_pod_status']['id']):
+		#collect data from all pod sensors
+		elif (msg_name == 'get_pod_status'):
 			canvas.print_out("COMMANDS:")
 			canvas.print_out("get pod status")
 
+			height = get_hover_height()
 			temp, pressure, attitude, position = get_pod_status()
 
-			canvas.print_out("Pod stauts: temp - %s, pressure - %s, attitude - %s, position - %s" % (temp, pressure, attitude, position) )
+			canvas.print_out("Pod stauts: height - %smm, temp - %sC, pressure - %skPa, attitude - %s, position - %sm" % (height, temp, pressure, attitude, position) )
 
 		time.sleep(1)
 			

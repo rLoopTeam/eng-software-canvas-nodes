@@ -1,6 +1,7 @@
 
 import zmq
 import sys
+from IDs import MessageList as ml
 
 class msg:
     def __init__(self, a, b):
@@ -35,14 +36,43 @@ def send(socket, msg_id, msg_data):
 def send_msg(socket, msg):
 	socket.send("%s %s" % (msg.id, msg.data))
 
-#blocking receive on the CAN bus
+#send a command message from the CAN message list
+def send_cmd(socket, msg_name):
+	socket.send("%s %s" % (ml.messages[msg_name]['id'], ""))	
+
+#send a batch of commands from the CAN message list
+def send_batch(socket, msg_names):
+	for name in msg_names:
+		socket.send("%s %s" % (ml.messages[name]['id'], ""))
+
+#send a data message with some data from the CAN message list
+def send_data(socket, msg_name, msg_data):
+	socket.send("%s %s" % (ml.messages[msg_name]['id'], msg_data))	
+
+#blocking receive on the CAN bus. returns message name
 def recv(socket):
+	can_message = socket.recv()
+	msg_id, data = can_message.split(' ', 1)
+	return ml.ids[msg_id]['name'], data
+
+#blocking receive on the CAN bus. returns message id
+def recv_id(socket):
 	can_message = socket.recv()
 	msg_id, data = can_message.split(' ', 1)
 	return msg_id, data
 
-#non-blocking receive on the CAN bus
+#non-blocking receive on the CAN bus. returns message name
 def recv_noblock(socket):
+	try:
+		can_message = socket.recv(flags=zmq.NOBLOCK)
+	except zmq.error.Again, e:
+		return "no_id", "no_message"
+	msg_id, data = can_message.split(' ', 1)
+	return ml.ids[msg_id]['name'], data
+
+
+#non-blocking receive on the CAN bus. returns message id
+def recv_noblock_id(socket):
 	try:
 		can_message = socket.recv(flags=zmq.NOBLOCK)
 	except zmq.error.Again, e:
@@ -50,13 +80,16 @@ def recv_noblock(socket):
 	msg_id, data = can_message.split(' ', 1)
 	return msg_id, data
 
+
 #add message filters to a CAN receiver
 def add_id(socket, filters):
 	for f in filters:
-		socket.setsockopt(zmq.SUBSCRIBE, f)
+		id_number = ml.messages[f]['id']
+		socket.setsockopt(zmq.SUBSCRIBE, id_number)
 	
 #remove message filters from a CAN receiver
 def rm_id(socket, filters):
 	for f in filters:
-		socket.setsockopt(zmq.UNSUBSCRIBE, f)
+		id_number = ml.messages[f]['id']
+		socket.setsockopt(zmq.UNSUBSCRIBE, id_number)
 	

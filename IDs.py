@@ -137,3 +137,142 @@ class MessageList():
 				}
 			}
 
+	ids = 	{
+				'1':{ #stop
+					'name':'stop',
+					'data':''
+				},
+				'2':{ #get engine status
+					'name':'get_engine_status',
+					'data':''
+				},
+				'4':{ #move pod at given speed
+					'name':'move',
+					'data':'',
+					'input_data': True
+				},
+				'5':{ #get status of all engines
+					'name':'get_engine_status_l',
+					'data':''
+				},
+				'6':{ #engine L status
+					'name':'engine_status_l',
+					'data':''
+				},
+				'7':{ #engine R status
+					'name':'engine_status_r',
+					'data':''
+				},
+				'8':{ #tilt engine L
+					'name':'tilt_l',
+					'data':'',
+					'input_data': True
+				},
+				'9':{ #tilt engine R
+					'name':'tilt_r',
+					'data':'',
+					'input_data': True
+				},
+				'10':{ #start engine L
+					'name':'start_l',
+					'data':'',
+				},
+				'11':{ #start engine R
+					'name':'start_r',
+					'data':'',
+				},
+				'12':{ #stop engine L
+					'name':'stop_l',
+					'data':'',
+				},
+				'13':{ #stop engine R
+					'name':'stop_r',
+					'data':'',
+				},
+				'14':{ #startup sequnce of pod
+					'name':'start',
+					'data':'',
+				},
+				'15':{ #umbillical connector temp request message
+					'name':'uc_temp_req',
+					'data':'',
+				},
+				'16':{ #umbillical connector temp data response
+					'name':'uc_temp_data',
+					'data':'',
+				},
+				'17':{ #battery temp request
+					'name':'batt_temp_req',
+					'data':'',
+				},
+				'18':{ #battery temp data response
+					'name':'batt_temp_data',
+					'data':'',
+				},
+				'19':{ #battery power level request
+					'name':'batt_power_req',
+					'data':'',
+				},
+				'20':{ #battery power data level response
+					'name':'batt_power_data',
+					'data':'',
+				},
+				'21':{ #standard outlet temperature request
+					'name':'so_temp_req',
+					'data':'',
+				},
+				'22':{ #standard outlet temperature data response
+					'name':'so_temp_data',
+					'data':'',
+				},
+				'23':{ #hover height request message
+					'name':'hover_height_req',
+					'data':'',
+				},
+				'24':{ #hover height data response
+					'name':'hover_height_data',
+					'data':'',
+				},
+				'25':{ #hover height request from ground station
+					'name':'get_hover_height',
+					'data':'',
+				},
+				'26':{ #pod cabin internal temperature request
+					'name':'pod_temp_req',
+					'data':'',
+				},
+				'27':{ #pod cabin internal temperature data
+					'name':'pod_temp_data',
+					'data':'',
+				},
+				'28':{ #pod attitude request
+					'name':'pod_attitude_req',
+					'data':'',
+				},
+				'29':{ #pod attitude data
+					'name':'pod_attitude_data',
+					'data':'',
+				},
+				'30':{ #pod cabin internal pressure req
+					'name':'pod_pressure_req',
+					'data':'',
+				},
+				'31':{ #pod cabin internal pressure data
+					'name':'pod_pressure_data',
+					'data':'',
+				},
+				'32':{ #pod position request
+					'name':'pod_position_req',
+					'data':'',
+				},
+				'33':{ #pod positon data
+					'name':'pod_position_data',
+					'data':'',
+				},
+				'34':{ #pod positon data
+					'name':'get_pod_status',
+					'data':'',
+				}
+			}
+
+

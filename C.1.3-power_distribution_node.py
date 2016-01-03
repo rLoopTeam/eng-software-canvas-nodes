@@ -1,14 +1,27 @@
 import time
 import canvas
 import math
+from random import randint
 from IDs import MessageList as ml
 
 id_filter = [# receive: stop, get engine status, go # highest level commands
-		ml.messages['uc_temp_data']['id'],
-		ml.messages['batt_temp_data']['id'],
-		ml.messages['batt_power_data']['id'],
-		ml.messages['so_temp_data']['id']
+		'uc_temp_req',
+		'batt_temp_req',
+		'batt_power_req',
+		'so_temp_req'
 		] 
+
+def get_umbilical_temp():
+	return randint(20, 40)
+
+def get_standard_outlet_temp():
+	return randint(20, 40)
+
+def get_battery_temp():
+	return randint(20, 40)
+
+def get_batter_power():
+	return randint(10, 20)
 
 def main():
 	receiver = canvas.init_receiver()
@@ -20,23 +33,27 @@ def main():
 
 	while 1:
 
-		canvas.send(sender, ml.messages['uc_temp_req']['id'], '')
-		canvas.send(sender, ml.messages['batt_temp_req']['id'], '')
-		canvas.send(sender, ml.messages['batt_power_req']['id'], '')
-		canvas.send(sender, ml.messages['so_temp_req']['id'], '')
+		canvas.send_cmd(sender, 'uc_temp_req')
+		canvas.send_cmd(sender, 'batt_temp_req')
+		canvas.send_cmd(sender, 'batt_power_req')
+		canvas.send_cmd(sender, 'so_temp_req')
 
-		msg_id, data = canvas.recv(receiver)
+		msg_name, msg_data = canvas.recv(receiver)
 
-		if (msg_id == ml.messages['uc_temp_data']['id']):
+		if (msg_name == 'uc_temp_req'):
+			data = get_umbilical_temp()
 			canvas.print_out("Umbilical temp: %s" % (data))
 
-		elif (msg_id == ml.messages['batt_temp_data']['id']):
+		elif (msg_name == 'batt_temp_req'):
+			data = get_battery_temp()
 			canvas.print_out("Battery temp: %s" % (data))
 
-		elif (msg_id == ml.messages['batt_power_data']['id']):
+		elif (msg_name == 'batt_power_req'):
+			data = get_batter_power()
 			canvas.print_out("Battery power: %s" % (data))
 
-		elif (msg_id == ml.messages['so_temp_data']['id']):
+		elif (msg_name == 'so_temp_req'):
+			data = get_standard_outlet_temp()
 			canvas.print_out("Standard outlet temp: %s" % (data))
 
 		time.sleep(2)

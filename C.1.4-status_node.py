@@ -5,10 +5,10 @@ from random import randint
 from IDs import MessageList as ml
 
 id_filter = [# receive: stop, get engine status, go # highest level commands
-		ml.messages['pod_temp_req']['id'],
-		ml.messages['pod_pressure_req']['id'],
-		ml.messages['pod_attitude_req']['id'],
-		ml.messages['pod_position_req']['id']
+		'pod_temp_req',
+		'pod_pressure_req',
+		'pod_attitude_req',
+		'pod_position_req'
 		] 
 
 def read_temp():
@@ -33,23 +33,23 @@ def main():
 
 	while 1:
 
-		msg_id, data = canvas.recv(receiver)
+		msg_name, data = canvas.recv(receiver)
 
-		if (msg_id == ml.messages['pod_temp_req']['id']):
+		if (msg_name == 'pod_temp_req'):
 			data = read_temp();
-			canvas.send(sender, ml.messages['pod_temp_data']['id'], data)
+			canvas.send_data(sender, 'pod_temp_data', data)
 
-		if (msg_id == ml.messages['pod_pressure_req']['id']):
+		if (msg_name == 'pod_pressure_req'):
 			data = read_pressure();
-			canvas.send(sender, ml.messages['pod_pressure_data']['id'], data)
+			canvas.send_data(sender, 'pod_pressure_data', data)
 
-		if (msg_id == ml.messages['pod_attitude_req']['id']):
+		if (msg_name == 'pod_attitude_req'):
 			data = read_attitude();
-			canvas.send(sender, ml.messages['pod_attitude_data']['id'], data)
+			canvas.send_data(sender, 'pod_attitude_data', data)
 
-		if (msg_id == ml.messages['pod_position_req']['id']):
+		if (msg_name == 'pod_position_req'):
 			data = read_position();
-			canvas.send(sender, ml.messages['pod_position_data']['id'], data)
+			canvas.send_data(sender, 'pod_position_data', data)
 
 if __name__ == '__main__':
     main()
