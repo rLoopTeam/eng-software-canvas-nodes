@@ -1,5 +1,6 @@
+from __future__ import print_function # In python 2.7
+import sys
 import time
-#import canvas
 import math
 
 from flask import Flask, jsonify, make_response, request
@@ -57,13 +58,49 @@ commands = [
     }
 ]
 
-@app.route('/stop', methods=['POST'])
+@app.route('/stop', methods=['GET'])
 def stop():
-    return jsonify({'command': 'stop'}), 201
+    result = {'command': 'start'}
+    print(result, file=sys.stderr)
+    return jsonify(result)
+
+@app.route('/start', methods=['GET'])
+def start():
+    result = {'command': 'start'}
+    print(result, file=sys.stderr)
+    return jsonify(result)
+
+@app.route('/move', methods=['POST'])
+def move():
+    if not request.json:
+        abort(400)
+    result = {'command': 'move', 'argument':request.json()}
+    print(result, file=sys.stderr)
+    return jsonify(result), 201
+
+@app.route('/get_status', methods=['GET'])
+def get_status():
+    result = {'command': 'get_status', 'return_values':request.json()}
+    print(result, file=sys.stderr)
+    return jsonify(result)
+
+@app.route('/get_position', methods=['GET'])
+def get_position():
+    result = {'command': 'get_position', 'return_values':request.json()}
+    print(result, file=sys.stderr)
+    return jsonify(result)
+
+@app.route('/get_speed', methods=['GET'])
+def get_speed():
+    result = {'command': 'get_speed', 'return_values':request.json()}
+    print(result, file=sys.stderr)
+    return jsonify(result)
 
 @app.route('/commands', methods=['GET'])
 def get_commands():
-        return jsonify({'commands':commands})
+    result = {'commands':commands}
+    print(result, file=sys.stderr)
+    return jsonify(result)
 
 
 @app.errorhandler(404)
@@ -82,4 +119,5 @@ def main():
 		time.sleep(2)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = True
+    app.run()
