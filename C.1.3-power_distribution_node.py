@@ -4,7 +4,7 @@ import math
 from random import randint
 from IDs import MessageList as ml
 
-id_filter = [# receive: stop, get engine status, go # highest level commands
+id_filter = [
 		'uc_temp_req',
 		'batt_temp_req',
 		'batt_power_req',
@@ -30,6 +30,7 @@ def main():
 
 	canvas.add_id(receiver, id_filter)
 	canvas.print_out("Power distribution node started")
+	canvas.send_cmd(sender, "power_distribution_node_started")
 
 	while 1:
 

@@ -80,6 +80,20 @@ def recv_noblock_id(socket):
 	msg_id, data = can_message.split(' ', 1)
 	return msg_id, data
 
+def wait(socket, msg_names):
+	i = len(msg_names)
+	received_msgs = []
+
+	while i > 0:
+		msg_name, data = recv(socket)
+
+		if msg_name in msg_names: 
+			if msg_name not in received_msgs:
+				i -= 1
+				received_msgs.append(msg_name)
+				print_out("GOT ONE")
+
+	return
 
 #add message filters to a CAN receiver
 def add_id(socket, filters):

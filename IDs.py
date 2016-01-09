@@ -134,6 +134,18 @@ class MessageList():
 				'get_pod_status':{ #pod positon data
 					'id':'34',
 					'data':'',
+				},
+				'status_node_started':{ #notification from the status node that it has started properly
+					'id':'35',
+					'data':'',
+				},
+				'power_distribution_node_started':{ #notification from the power dist node that it has started properly
+					'id':'36',
+					'data':'',
+				},
+				'control_node_started':{ #notification from the control node that it has started properly
+					'id':'37',
+					'data':'',
 				}
 			}
 
@@ -271,6 +283,18 @@ class MessageList():
 				},
 				'34':{ #pod positon data
 					'name':'get_pod_status',
+					'data':'',
+				},
+				'35':{ #notification from the status node that it has started properly
+					'name':'status_node_started',
+					'data':'',
+				},
+				'36':{ #notification from the power dist node that it has started properly
+					'name':'power_distribution_node_started',
+					'data':'',
+				},
+				'37':{ #notification from the control node that it has started properly
+					'name':'control_node_started',
 					'data':'',
 				}
 			}

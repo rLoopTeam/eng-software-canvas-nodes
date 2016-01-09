@@ -7,7 +7,7 @@ from IDs import MessageList as ml
 sender = 0
 receiver = 0
 
-id_filter = [# receive: stop, get engine status, go # highest level commands
+id_filter = [
 		'stop',
 		'start',
 		'get_engine_status',
@@ -18,6 +18,8 @@ id_filter = [# receive: stop, get engine status, go # highest level commands
 		'pod_attitude_data',
 		'pod_position_data',
 		'pod_pressure_data',
+		'power_distribution_node_started',
+		'status_node_started',
 		'move'
 		] 
 
@@ -93,6 +95,9 @@ def main():
 
 	canvas.add_id(receiver, id_filter)
 	canvas.print_out("Control node started")
+	canvas.wait(receiver, ['power_distribution_node_stared', 'status_node_started'])
+	canvas.print_out("rPod running")
+
 	while 1:
 		canvas.send_cmd(sender, 'get_pod_status')
 		msg_name, data = canvas.recv(receiver)
