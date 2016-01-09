@@ -26,11 +26,11 @@ id_filter = [ # receive: stop, get engine status, go # highest level commands
 # Emergency node functions
 def alert_ground_station(emer, loc):
 	canvas.print_out("Sending message to ground station")		
-	canvas.send(sender, ml.messages['emer_l']['id'], "Emergency code: {0} \nLocation: {1}".format(emer, loc))
+	canvas.send(sender, 'emer_1', "Emergency code: {0} \nLocation: {1}".format(emer, loc))
 	
 def pod_shutdown():
 	canvas.print_out("Shutting down pod")		
-	canvas.send(sender, ml.messages['stop']['id'], 0)
+	canvas.send_cmd(sender, 'stop')
 
 # Main loop function
 def main():
