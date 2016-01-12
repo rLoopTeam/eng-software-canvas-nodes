@@ -67,7 +67,7 @@ def main():
 				alert_ground_station(4,location)
 				pod_shutdown()
 				
-
+				
 		elif (msg_name == 'pod_attitude_data'):
 		
 		elif (msg_name == 'hover_height_data'):
