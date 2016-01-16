@@ -146,6 +146,58 @@ class MessageList():
 				'control_node_started':{ #notification from the control node that it has started properly
 					'id':'37',
 					'data':'',
+				},
+				'is_brake_engaged':{ #is mech brake is engaged request
+					'id':'38',
+					'data':'',
+				},
+				'is_brake_engaged_rep':{ #reply to mech brake engaged request
+					'id':'39',
+					'data':'',
+				},
+				'get_brake_force':{ #mech brake force request
+					'id':'40',
+					'data':'',
+				},
+				'get_brake_force_rep':{ #reply to mech brake force request
+					'id':'41',
+					'data':'',
+				},
+				'set_brake_force':{ #request mech brake be set to 'data' force
+					'id':'42',
+					'data':'',
+				},
+				'get_eddy_brake_angle':{ #eddy brake angle request
+					'id':'43',
+					'data':'',
+				},
+				'get_eddy_brake_angle_rep':{ #reply to eddy brake angle request
+					'id':'44',
+					'data':'',
+				},
+				'get_eddy_brake_power':{ #eddy brake power request
+					'id':'45',
+					'data':'',
+				},
+				'get_eddy_brake_power_rep':{ #reply to eddy brake power request
+					'id':'46',
+					'data':'',
+				},
+				'get_eddy_brake_temp':{ #eddy brake temperature request
+					'id':'47',
+					'data':'',
+				},
+				'get_eddy_brake_temp_rep':{ #reply to eddy brake temperature request
+					'id':'48',
+					'data':'',
+				},
+				'set_eddy_brake_angle':{ #request eddy brake's angle be set to 'data' degrees
+					'id':'49',
+					'data':'',
+				},
+				'set_eddy_brake_power':{ #request eddy brake's power be set to 'data' percent
+					'id':'50',
+					'data':'',
 				}
 			}
 
@@ -296,6 +348,61 @@ class MessageList():
 				'37':{ #notification from the control node that it has started properly
 					'name':'control_node_started',
 					'data':'',
+				}
+				'38':{ #is mech brake is engaged request
+					'name':'is_brake_engaged',
+					'data':'',
+				},
+				'39':{ #reply to mech brake engaged request
+					'name':'is_brake_engaged_rep',
+					'data':'',
+				},
+				'40':{ #mech brake force request
+					'name':'get_brake_force',
+					'data':'',
+				},
+				'41':{ #reply to mech brake force request
+					'name':'get_brake_force_rep',
+					'data':'',
+				},
+				'42':{ #request mech brake be set to 'data' force
+					'name':'set_brake_force',
+					'data':'',
+					'input_data': True
+				},
+				'43':{ #eddy brake angle request
+					'name':'get_eddy_brake_angle',
+					'data':'',
+				},
+				'44':{ #reply to eddy brake angle request
+					'name':'get_eddy_brake_angle_rep',
+					'data':'',
+				},
+				'45':{ #eddy brake power request
+					'name':'get_eddy_brake_power',
+					'data':'',
+				},
+				'46':{ #reply to eddy brake power request
+					'name':'get_eddy_brake_power_rep',
+					'data':'',
+				},
+				'47':{ #eddy brake temperature request
+					'name':'get_eddy_brake_temp',
+					'data':'',
+				},
+				'48':{ #reply to eddy brake temperature request
+					'name':'get_eddy_brake_temp_rep',
+					'data':'',
+				},
+				'49':{ #request eddy brake's angle be set to 'data' degrees
+					'name':'set_eddy_brake_angle',
+					'data':'',
+					'input_data': True
+				},
+				'50':{ #request eddy brake's power be set to 'data' percent
+					'name':'set_eddy_brake_power',
+					'data':'',
+					'input_data': True
 				}
 			}
 
