@@ -7,9 +7,9 @@ receiver = 0
 
 id_filter = [ # receive: stop, get engine status, go # highest level commands
 		'is_brake_engaged',
-		'is_brake_engaged_1',
+		'is_brake_engaged_rep',
 		'get_brake_force',
-		'get_brake_force_1',
+		'get_brake_force_rep',
 		'set_brake_force'
 		]
 
@@ -49,9 +49,9 @@ def main():
 		if (msg_name == 'set_brake_force'):
 			set_brake_force(data)
 		elif ('get_brake_force'):
-			canvas.send( sender, 'get_brake_force_1', get_brake_force() )
+			canvas.send( sender, 'get_brake_force_rep', get_brake_force() )
 		elif ('is_brake_engaged'):
-			canvas.send( sender, 'is_brake_engaged_1', is_brake_engaged() )
+			canvas.send( sender, 'is_brake_engaged_rep', is_brake_engaged() )
 			
 		time.sleep(1)
 
