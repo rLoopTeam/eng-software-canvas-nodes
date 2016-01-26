@@ -12,7 +12,7 @@ id_filter = [ # receive: stop, get engine status, go # highest level commands
 		'get_eddy_brake_power_rep',
 		'get_eddy_brake_temp',
 		'get_eddy_brake_temp_rep',
-		'set_eddy_brake_angle'
+		'set_eddy_brake_angle',
 		'set_eddy_brake_power'
 		]
 
@@ -30,10 +30,10 @@ def get_eddy_brake_temp():
 
 # Eddy brakes - Setter functions
 def set_eddy_brake_angle(ang):
-	print "Eddy brake angle set to %d degrees.\n".format(force)
+	print "Eddy brake angle set to %d degrees.\n".format(ang)
 
 def set_eddy_brake_power(pow):
-	print "Eddy brake power set to %d percent.\n".format(force)
+	print "Eddy brake power set to %d percent.\n".format(pow)
 	
 	
 # Main loop

@@ -198,6 +198,30 @@ class MessageList():
 				'set_eddy_brake_power':{ #request eddy brake's power be set to 'data' percent
 					'id':'50',
 					'data':'',
+				},
+				'get_hover_eng_angle':{ #hover engine angle request
+					'id':'51',
+					'data':'',
+				},
+				'get_hover_eng_angle_rep':{ #reply to hover engine angle request
+					'id':'52',
+					'data':'',
+				},
+				'get_hover_eng_power':{ #hover engine power request
+					'id':'53',
+					'data':'',
+				},
+				'get_hover_eng_power_rep':{ #reply to hover engine power request
+					'id':'54',
+					'data':'',
+				},
+				'set_hover_eng_angle':{ #request hover engine's angle be set to 'data' degrees
+					'id':'55',
+					'data':'',
+				},
+				'set_hover_eng_power':{ #request hover engine's power be set to 'data' percent
+					'id':'56',
+					'data':'',
 				}
 			}
 
@@ -401,6 +425,32 @@ class MessageList():
 				},
 				'50':{ #request eddy brake's power be set to 'data' percent
 					'name':'set_eddy_brake_power',
+					'data':'',
+					'input_data': True
+				},
+				'51':{ #hover engine angle request
+					'id':'get_hover_eng_angle',
+					'data':'',
+				},
+				'52':{ #reply to hover engine angle request
+					'id':'get_hover_eng_angle_rep',
+					'data':'',
+				},
+				'53':{ #hover engine power request
+					'id':'get_hover_eng_power',
+					'data':'',
+				},
+				'54':{ #reply to hover engine power request
+					'id':'get_hover_eng_power_rep',
+					'data':'',
+				},
+				'55':{ #request hover engine's angle be set to 'data' degrees
+					'id':'set_hover_eng_angle',
+					'data':'',
+					'input_data': True
+				},
+				'56':{ #request hover engine's power be set to 'data' percent
+					'id':'set_hover_eng_power',
 					'data':'',
 					'input_data': True
 				}
